@@ -67,16 +67,19 @@ const scaleIn = {
 };
 
 /* ──────────── SECTION WRAPPER ──────────── */
-const Section = ({ children, className = "" }) => {
+const Section = ({ id, children, className = "", ...props }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <motion.section
+      id={id}
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={staggerContainer}
       className={className}
+      {...props}
     >
       {children}
     </motion.section>
